@@ -1,0 +1,73 @@
+sumedh@Sumedhs-MacBook-Pro Kubernetes % minikube service mongo-express-service
+|-----------|-----------------------|-------------|---------------------------|
+| NAMESPACE |         NAME          | TARGET PORT |            URL            |
+|-----------|-----------------------|-------------|---------------------------|
+| default   | mongo-express-service |        8081 | http://192.168.64.2:30000 |
+|-----------|-----------------------|-------------|---------------------------|
+🎉  Opening service default/mongo-express-service in default browser...
+sumedh@Sumedhs-MacBook-Pro Kubernetes % kubectl get services                  
+NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+kubernetes              ClusterIP      10.96.0.1        <none>        443/TCP          4h58m
+mongo-express-service   LoadBalancer   10.102.1.248     <pending>     8081:30000/TCP   10m
+mongodb-service         ClusterIP      10.103.112.103   <none>        27017/TCP        163m
+sumedh@Sumedhs-MacBook-Pro Kubernetes % kubectl get pod     
+NAME                                  READY   STATUS    RESTARTS   AGE
+mongo-express-bb96bd646-68bj4         1/1     Running   0          15m
+mongodb-deployment-555cdf5fdf-7ll5w   1/1     Running   0          70m
+my-nignx-77f5fb9fb9-lf82p             1/1     Running   0          4h15m
+sumedh@Sumedhs-MacBook-Pro Kubernetes % kubectl describe pod mongo-express-bb96bd646-68bj4
+Name:         mongo-express-bb96bd646-68bj4
+Namespace:    default
+Priority:     0
+Node:         minikube/192.168.64.2
+Start Time:   Sun, 04 Apr 2021 15:21:09 -0400
+Labels:       app=mongo-express
+              pod-template-hash=bb96bd646
+Annotations:  <none>
+Status:       Running
+IP:           172.17.0.6
+IPs:
+  IP:           172.17.0.6
+Controlled By:  ReplicaSet/mongo-express-bb96bd646
+Containers:
+  mongo-express:
+    Container ID:   docker://3da930860d59cd9ecc57970f300eeb33ea75870ebfde6edfaa2cd8514d66d429
+    Image:          mongo-express
+    Image ID:       docker-pullable://mongo-express@sha256:42eafcb90bbbb29bc66f4f808977a8674a2a13c54e705f811d48b1289dbd88f3
+    Port:           8081/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 04 Apr 2021 15:21:12 -0400
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME:  <set to the key 'mongo-username' in secret 'mongodb-secret'>  Optional: false
+      ME_CONFIG_MONGODB_ADMINPASSWORD:  <set to the key 'mongo-password' in secret 'mongodb-secret'>  Optional: false
+      ME_CONFIG_MONGODB_SERVER:         <set to the key 'database_url' of config map 'mongo-config'>  Optional: false
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-zsghf (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-zsghf:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-zsghf
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                 node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type    Reason     Age   From               Message
+  ----    ------     ----  ----               -------
+  Normal  Scheduled  15m   default-scheduler  Successfully assigned default/mongo-express-bb96bd646-68bj4 to minikube
+  Normal  Pulling    15m   kubelet            Pulling image "mongo-express"
+  Normal  Pulled     15m   kubelet            Successfully pulled image "mongo-express" in 2.14681277s
+  Normal  Created    15m   kubelet            Created container mongo-express
+  Normal  Started    15m   kubelet            Started container mongo-express
+
+-----> kubectl apply -f "filename.yaml"
