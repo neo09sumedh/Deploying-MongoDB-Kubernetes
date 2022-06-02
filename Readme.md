@@ -1,11 +1,11 @@
-Customization for building network infrastrcture using AFT
+# Customization for building network infrastrcture using AFT
 
 network.tf consist of provisioning of network account which will consist of core infrastructure resorces required for setting up Transit Gateway and IPAM pool and would be shared with PROD OU and DEV OU using Resources Access Manager(RAM)
 
-##Scope
+## Scope
 network.tf would be responsible for provisioning the network account with SSO and also executing the terraform script placed in aft-account-customizations repository under terraform folder with naming convention of folder as "network" which is responsible for IPAM pool creation and Transit Gateway.
 
-##Usage
+## Usage
 module "network" { 
   source = "./modules/aft-account-request"
 
@@ -34,7 +34,7 @@ module "network" {
   
   account_customizations_name = "network" 
 }
-###The code above will provision the following:
+### The code above will provision the following:
 
 ✅ network account under Organization Unit SharedOU
 ✅ Provison SSM parameter for setting IPAM pool CIDR as parameter using custom fields which will be used for account customization for setting IPAM pool.
@@ -47,7 +47,7 @@ module "network" {
 ✅ The custom_fields attribute lets you define additional metadata for your account, which you can use in your account customizations or provisioning configuration
 ✅ The account_customizations_name attribute lets you specify the subdirectory in the account customizations repository the pipeline should use to modify this account, if any
 
-###Custom Fields
+### Custom Fields
 
 We will be setting up IPAM CIDR ranges for DEV and PROD using Custom Fields in network.tf for IPAM Pool.
 
@@ -64,9 +64,9 @@ We will be setting up IPAM CIDR ranges for DEV and PROD using Custom Fields in n
 | ------------- | ------------- | 
 | AWS           | >= 3.72       |
 
-##Output 
+## Output 
 
-This will create network account within your specfied OU and you can check the account created in AWS Organization.
+This will create network account within your specfied OU and you can check the account created in AWS Organization as well as you will get notification on your provided AccountEmail Id.
 
 
 
