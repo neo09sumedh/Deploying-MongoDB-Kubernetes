@@ -6,6 +6,7 @@ network.tf consist of provisioning of network account which will consist of core
 network.tf would be responsible for provisioning the network account with SSO and also executing the terraform script placed in aft-account-customizations repository under terraform folder with naming convention of folder as "network" which is responsible for IPAM pool creation and Transit Gateway.
 
 ## Usage
+```
 module "network" { 
   source = "./modules/aft-account-request"
 
@@ -34,6 +35,8 @@ module "network" {
   
   account_customizations_name = "network" 
 }
+
+```
 #### The code above will provision the following:
 
 ✅ network account under Organization Unit SharedOU
