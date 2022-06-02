@@ -34,31 +34,31 @@ module "network" {
   
   account_customizations_name = "network" 
 }
-### The code above will provision the following:
+#### The code above will provision the following:
 
 ✅ network account under Organization Unit SharedOU
 ✅ Provison SSM parameter for setting IPAM pool CIDR as parameter using custom fields which will be used for account customization for setting IPAM pool.
 ✅ Attribute Account customization "network" will execute code required provisioning IPAM Pool and Tranist Gateway
 
-###Attributes in Code
+### Attributes in Code
 
 ✅ The account_tags attribute lets you apply tags to your account according to your business criteria
 ✅ The change_management_parameters attribute lets you document who issues the account request and its purposes
 ✅ The custom_fields attribute lets you define additional metadata for your account, which you can use in your account customizations or provisioning configuration
 ✅ The account_customizations_name attribute lets you specify the subdirectory in the account customizations repository the pipeline should use to modify this account, if any
 
-### Custom Fields
+#### Custom Fields
 
 We will be setting up IPAM CIDR ranges for DEV and PROD using Custom Fields in network.tf for IPAM Pool.
 
-##Requirements
+## Requirements
 
 | Name          | Version       | 
 | ------------- | ------------- |
 | Terraform     | >= 1.0.0      | 
 | AWS           | >= 3.72       | 
 
-##Providers
+## Providers
 
 | Name          | Version       | 
 | ------------- | ------------- | 
