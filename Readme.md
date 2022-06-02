@@ -1,4 +1,4 @@
-#Customization for building network infrastrcture using AFT
+Customization for building network infrastrcture using AFT
 
 network.tf consist of provisioning of network account which will consist of core infrastructure resorces required for setting up Transit Gateway and IPAM pool and would be shared with PROD OU and DEV OU using Resources Access Manager(RAM)
 
