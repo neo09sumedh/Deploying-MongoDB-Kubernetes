@@ -1,9 +1,9 @@
 # Deploy an network account with AFT
 
-network.tf consist of provisioning of network account which will consist of core infrastructure resorces required for setting up Transit Gateway ,IPAM pool and would be shared with PROD OU and DEV OU using Resources Access Manager(RAM)
+network.tf consist of code provisioning of network account which will consist of core infrastructure resorces required for setting up Transit Gateway and IPAM pool which would be shared with PROD OU and DEV OU using Resources Access Manager(RAM)
 
 ## Scope
-network.tf would be responsible for provisioning the network account with SSO and also executing the terraform script placed in aft-account-customizations repository under terraform folder with naming convention of folder as "network" which is responsible for IPAM pool creation and Transit Gateway.
+network.tf would be responsible for provisioning the network account with SSO and also executing the terraform script placed in aft-account-customizations repository under terraform folder with naming convention of folder as "network" which is responsible for IPAM pool creation and Transit Gateways one for each environment(Dev and Prod).
 
 ## Usage
 ```
@@ -41,7 +41,7 @@ module "network" {
 ```
 ✅ network account under Organization Unit SharedOU
 ✅ Provison SSM parameter for setting IPAM pool CIDR as parameter using custom fields which will be used for account customization for setting IPAM pool.
-✅ Attribute Account customization "network" will execute code required provisioning IPAM Pool and Tranist Gateway
+✅ Attribute Account customization with value "network" will execute code within aft-account-customizations repository required for provisioning IPAM Pool and Tranist Gateways
 ```
 ### Attributes in Code
 ```
@@ -52,7 +52,7 @@ module "network" {
 ```
 #### Custom Fields
 
-We will be setting up IPAM CIDR ranges for DEV and PROD using Custom Fields in network.tf for IPAM Pool.
+Using Custom Fields we will be setting up IPAM CIDR ranges for IPAM Pools for each respective environment like DEV and PROD.
 
 ## Requirements
 
